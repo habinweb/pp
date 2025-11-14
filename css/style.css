@@ -1,0 +1,194 @@
+@charset "UTF-8";
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+/*html5 새로 추가된 요소들은 블록요소로 인식되지 않음. 이 요소들은 대부분 블록요소일 경우가 대부분이기때문에 한꺼번에 선언함.*/
+a {
+  text-decoration: none;
+  color: black;
+}
+
+li {
+  list-style: none;
+}
+
+img,
+fieldset,
+iframe {
+  border: 0;
+}
+
+input {
+  vertical-align: middle;
+}
+
+.skip {
+  font-size: 0;
+  width: 0;
+  height: 0;
+  line-height: 0;
+  position: absolute;
+  left: -9999px;
+}
+
+.cf:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#header {
+  width: 90%;
+  margin: 0 auto;
+}
+#header .header-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin: 2rem 0;
+}
+#header .header-box .tag {
+  display: inline-block;
+}
+
+.menu {
+  width: 100%;
+}
+.menu .menu-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: end;
+  gap: 2rem;
+  font-size: 1.5rem;
+}
+.menu .menu-box .menu-title {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+}
+.menu .menu-box .menu-title:hover {
+  font-weight: 900;
+}
+
+.sub-box {
+  position: absolute;
+  color: inherit;
+  padding-top: 2rem;
+  white-space: nowrap;
+  opacity: 1;
+}
+.sub-box.show {
+  opacity: 1;
+}
+.sub-box .sub-title {
+  font-weight: 700;
+  transition: all 0.3s ease-in;
+  margin-bottom: 2rem;
+}
+.sub-box .sub-title:hover {
+  transform: scale(1.1);
+  color: black;
+}
+
+.sub-sub {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+.sub-sub .sub-sub-a {
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+.sub-sub .sub-sub-a > a:hover {
+  font-weight: 700;
+  color: red;
+}
+
+/*# sourceMappingURL=style.css.map */

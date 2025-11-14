@@ -6,18 +6,36 @@
   }
 }
 @mixin desktop {
-  @media (max-width: bp.$breakPoint-desktop) {
+  @media (min-width: bp.$breakPoint-desktop) {
     @content;
   }
+}
+
+// 정렬 관련
+@mixin flex {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
 }
 
 @mixin flex-center {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: nowrap;
 }
 
 @mixin layout {
   width: 90%;
   margin: 0 auto;
+}
+
+//색상 관련
+@mixin color {
+  color: red;
+}
+
+//애니메이션
+@mixin effect {
+  transition: all 0.3s ease-in;
 }
