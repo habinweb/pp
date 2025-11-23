@@ -1,37 +1,92 @@
 @use "mixin" as m;
 
+// 최상위 컨테이너
 .hero-container {
-  position: relative;
   width: 100%;
   height: calc(100vh - 8.5rem);
-
-  .hero {
-    position: absolute;
-    @include m.center;
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  .back {
-    position: absolute;
-    @include m.center;
-    width: 100%;
-    margin: 0 auto;
-  }
 }
 
-.front {
-  width: 100%;
-  @include m.flex-center;
-  & > img {
-    width: 70%;
-  }
+/* 히어로 영역 */
+.hero {
+  position: relative;
+  width: 70vw;
+  aspect-ratio: 16 / 13;
+  @include m.center;
+}
 
-  .back {
-    width: 100%;
-    @include m.flex-center;
-    & > img {
-      width: 70%;
-    }
-  }
+/* 앞쪽 이미지 (원근감) */
+.hero .front {
+  position: absolute;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  bottom: 0;
+  @include m.flex-center;
+  z-index: 3;
+}
+
+.hero .front::after {
+  content: "";
+  position: absolute;
+  width: 100%; // 카드 너비
+  height: 100%; // 카드 높이
+  bottom: 0; // 아래쪽 기준
+  background: rgba(50, 50, 50, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 10px;
+  transform-origin: bottom center;
+  transform: perspective(500px) rotateX(-5deg); // 사다리꼴/원근 느낌
+  z-index: 1; // 이미지보다 뒤
+  box-shadow: 1px 1px 20px rgba(50, 50, 50, 0.2);
+}
+
+/* 텍스트 박스 */
+.hero .profile-txt-box {
+  position: absolute;
+  width: 90%;
+  height: 85%;
+  background: #fff;
+  border-radius: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 5%;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.profile-txt-box .profile {
+  width: 100%;
+  position: absolute;
+  top: -20px;
+  text-align: center;
+  display: inline-block;
+  font-size: 4.5rem;
+  font-weight: 500;
+}
+
+/* 뒷배경 이미지 */
+
+.hero .back {
+  opacity: 0.2;
+}
+.hero .back::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 95%;
+  bottom: 0;
+  background: rgb(50, 50, 50);
+  border-radius: 0 10px 10px 10px;
+  z-index: 1;
+}
+
+.hero .back::before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 6%;
+  top: 0;
+  background: rgb(50, 50, 50);
+  border-radius: 10px 10px 0 0;
+  z-index: 1;
 }
