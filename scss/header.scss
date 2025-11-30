@@ -19,6 +19,7 @@ dd {
     @include m.flex-center;
     margin: 2rem 0;
     .tag {
+      font-size: 1.1rem;
       display: inline-block;
     }
   }
@@ -33,10 +34,10 @@ dd {
     @include m.flex;
     justify-content: end;
     gap: 1rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
 
     @include m.desktop {
-      gap: 2rem;
+      gap: 1.5rem;
     }
 
     .menu-title {

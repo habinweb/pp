@@ -71,7 +71,7 @@ body {
   transform: translateX(-50%);
   bottom: 6%;
   z-index: 2;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
   transition: transform 0.5s ease, box-shadow 0.5s ease;
   transform-style: preserve-3d;
   transform-origin: center center;
@@ -200,10 +200,68 @@ body {
   height: 100%;
   margin: 0 auto;
 }
-.profile-back {
-  padding-top: 0.5rem;
+.profile-back-box {
+  padding-top: 1.5rem;
 }
+.profile-back-title {
+  display: flex;
+  flex-direction: column;
+}
+.profile-back {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: #242424;
+}
+.profile-me-back {
+  font-size: 3rem;
+}
+.profile-back-more {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: -2rem;
+}
+.profile-me-back-more {
+  font-size: 3rem;
+  text-shadow: 1px 2px 5px #31313120;
+}
+// .picture {
+//   width: 400px;
+//   background: red;
+// }
+.info-container {
+  margin-top: 8rem;
+}
+.information-box {
+  padding: 1rem 0;
+}
+.information {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.info-title {
+  font-size: 0.6rem;
 
+  padding-left: 0.1rem;
+  color: #f5f5f5;
+  background: #111;
+}
+.info-title.t {
+  margin-bottom: -0.2rem;
+}
+.info-d {
+  font-size: 0.8rem;
+}
+.use-skils {
+  display: flex;
+  flex-direction: column;
+}
+.use-skils-box {
+  display: flex;
+  justify-content: space-between;
+}
 /* 뒷배경 이미지 */
 .hero .back {
   opacity: 0.7;
