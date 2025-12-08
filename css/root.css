@@ -1,9 +1,10 @@
 /* 라이트 모드 기본 */
 :root {
   --color-bg: #f5f5f5;
+  --color-bg-trans: #f5f5f550;
   --color-text: #111;
   --color-card: #fff;
-  --color-card50: #ffffff50;
+  --color-card50: #ffffff60;
   --color-front: rgba(0, 0, 0, 0.3);
   --color-back: #bcbcbc;
   --shadow-soft: rgba(0, 0, 0, 0.15);
@@ -14,6 +15,7 @@
 /* 다크 모드 */
 [data-theme="dark"] {
   --color-bg: #242424;
+  --color-bg-trans: #24242460;
   --color-text: #f5f5f5;
   --color-card: #313131;
   --color-card50: #31313150;

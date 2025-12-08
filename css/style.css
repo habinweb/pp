@@ -152,14 +152,19 @@ dd {
 }
 
 #header {
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;
+  position: fixed;
+  z-index: 50;
+  background: var(--color-bg-trans);
+  backdrop-filter: blur(20px);
+  padding: 0 2rem;
+  height: 84px;
 }
 #header .header-box {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 2rem 0;
+  margin: 1.5rem 0;
 }
 #header .header-box .tag {
   font-size: 1.1rem;
@@ -188,6 +193,7 @@ dd {
 .menu .menu-box .menu-title {
   position: relative;
   cursor: pointer;
+  white-space: nowrap;
   transition: all 0.2s ease-in;
 }
 .menu .menu-box .menu-title:hover {
@@ -223,6 +229,10 @@ dd {
 }
 .sub-box .sub-title:last-child {
   margin-bottom: 0;
+}
+
+.sub-title-d {
+  font-weight: 500;
 }
 
 .sub-sub {
@@ -296,6 +306,47 @@ dd {
   font-family: "Font02";
   src: url("../fonts/Fair-Prosper.woff2") format("woff2"), url("../fonts/Fair-Prosper.woff") format("woff"), url("../fonts/Fair-Prosper.ttf") format("truetype");
 }
+.btn-top {
+  opacity: 0;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 32px;
+  height: 40px;
+  background: var(--color-back);
+  border: none;
+  border-radius: 50px;
+  backdrop-filter: blur(15px);
+  pointer-events: none;
+  transition: all 0.5s ease;
+  z-index: 40;
+}
+
+.top-txt {
+  display: inline-block;
+  font-size: 1.7rem;
+  color: var(--color-bg);
+  animation: upDown 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes upDown {
+  0% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+.btn-top:hover {
+  border-radius: 5px;
+}
+
+.btn-top.show {
+  opacity: 1;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
 body {
   background: var(--color-bg);
   overflow-x: hidden;
@@ -308,7 +359,8 @@ body {
 
 .hero-container {
   width: 100%;
-  height: calc(100vh - 7rem);
+  margin-top: 84px;
+  height: calc(100vh - 84px);
 }
 
 /* 히어로 영역 */
@@ -339,6 +391,8 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 3;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
 }
 @media (min-width: 1200px) {
   .hero .front {
@@ -391,13 +445,17 @@ body {
   }
 }
 
-.hero.active .profile-txt-box {
-  transform: translateX(-50%) translateY(-60%) rotate(70deg);
+.hero.active .front {
+  transform: translateY(10vh);
+}
+
+.hero.active .profile-txt-box:not(.top) {
+  transform: translateX(-50%) translateY(-40%) rotate(70deg) scale(1);
   box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
 }
 @media (min-width: 1200px) {
-  .hero.active .profile-txt-box {
-    transform: translateX(-50%) translateY(-50%) rotate(5deg);
+  .hero.active .profile-txt-box:not(.top) {
+    transform: translateX(-50%) translateY(-20%) rotate(5deg);
   }
 }
 
@@ -428,9 +486,15 @@ body {
   visibility: visible;
 }
 
-.profile-txt-box.top {
-  transform: translateZ(10px) translateX(-50%) scale(1.5);
+.hero.active .profile-txt-box.top {
+  transform: rotate(90deg) translateX(0%) translateY(85%) scale(2);
   z-index: 10;
+}
+@media (min-width: 1200px) {
+  .hero.active .profile-txt-box.top {
+    transform: translateZ(10px) translateX(-50%) scale(1.5);
+    z-index: 10;
+  }
 }
 
 .profile-txt-box.top .card-face.front2 {
@@ -527,11 +591,23 @@ body {
 }
 
 .card-face.back2 {
-  width: 90%;
+  width: 50%;
   height: 100%;
-  margin: 0 auto;
+  margin: 0 1.5rem;
+  transform: rotate(-90deg);
+}
+@media (min-width: 1200px) {
+  .card-face.back2 {
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+    transform: rotate(0);
+  }
 }
 
+.profile-back-box {
+  padding-top: 0;
+}
 @media (min-width: 1200px) {
   .profile-back-box {
     padding-top: 1.5rem;
@@ -545,26 +621,45 @@ body {
   }
 }
 
+.profile-back {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
 @media (min-width: 1200px) {
   .profile-back {
     width: 100%;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     color: #242424;
   }
 }
 
+.profile-me-back {
+  color: #242424;
+  font-size: 1.5rem;
+}
 @media (min-width: 1200px) {
   .profile-me-back {
     font-size: 3rem;
   }
 }
 
+.profile-back-more {
+  font-size: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: -6.5rem;
+  align-items: end;
+}
 @media (min-width: 1200px) {
   .profile-back-more {
     font-size: 3rem;
     width: 100%;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     margin-top: -2rem;
   }
@@ -577,6 +672,9 @@ body {
   }
 }
 
+.info-container {
+  margin-top: 3.5rem;
+}
 @media (min-width: 1200px) {
   .info-container {
     margin-top: 8rem;
@@ -597,27 +695,50 @@ body {
   }
 }
 
+.informations {
+  margin-bottom: 0.5rem;
+}
 @media (min-width: 1200px) {
-  .info-title {
-    font-size: 0.6rem;
-    padding-left: 0.1rem;
-    color: #f5f5f5;
-    background: #111;
+  .informations {
+    margin-bottom: 0;
   }
 }
 
+.info-title {
+  font-size: 0.5rem;
+  padding-left: 0.1rem;
+  color: #f5f5f5;
+  background: #242424;
+}
+@media (min-width: 1200px) {
+  .info-title {
+    font-size: 0.6rem;
+  }
+}
+
+.info-title.t {
+  margin-bottom: -0.5rem;
+}
 @media (min-width: 1200px) {
   .info-title.t {
     margin-bottom: -0.2rem;
   }
 }
 
+.info-d {
+  font-size: 0.5rem;
+  white-space: nowrap;
+  color: #242424;
+}
 @media (min-width: 1200px) {
   .info-d {
     font-size: 0.8rem;
   }
 }
 
+.use-skils {
+  display: none;
+}
 @media (min-width: 1200px) {
   .use-skils {
     display: flex;
@@ -627,7 +748,15 @@ body {
 
 .use-skils-box {
   display: flex;
+  gap: 0 1rem;
   justify-content: space-between;
+  flex-wrap: wrap;
+}
+@media (min-width: 1200px) {
+  .use-skils-box {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 /* 뒷배경 이미지 */
@@ -644,11 +773,17 @@ body {
   background: var(--color-back);
   border-radius: 0 10px 10px 10px;
   z-index: 1;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
 }
 @media (min-width: 1200px) {
   .hero .back::after {
     height: 92%;
   }
+}
+
+.hero.active .back::after {
+  transform: translateY(10vh);
 }
 
 .hero .back::before {
@@ -660,12 +795,18 @@ body {
   background: var(--color-back);
   border-radius: 10px 50px 0 0;
   z-index: 1;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
 }
 @media (min-width: 1200px) {
   .hero .back::before {
     height: 10%;
     border-radius: 10px 100px 0 0;
   }
+}
+
+.hero.active .back::before {
+  transform: translateY(10vh);
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,19 +1,58 @@
 @use "mixin" as m;
 @use "fonts";
 
+// 맨 위로 버튼
+.btn-top {
+  opacity: 0;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 32px;
+  height: 40px;
+  background: var(--color-back);
+  border: none;
+  border-radius: 50px;
+  backdrop-filter: blur(15px);
+  pointer-events: none;
+  transition: all 0.5s ease;
+  z-index: 40;
+}
+.top-txt {
+  display: inline-block;
+  font-size: 1.7rem;
+  color: var(--color-bg);
+  animation: upDown 1.2s ease-in-out infinite alternate;
+}
+@keyframes upDown {
+  0% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+.btn-top:hover {
+  border-radius: 5px;
+}
+.btn-top.show {
+  opacity: 1;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
 body {
   background: var(--color-bg);
   overflow-x: hidden;
 }
-
+// 최상위 컨테이너
 #main {
   width: 100%;
   overflow: hidden;
 }
-// 최상위 컨테이너
 .hero-container {
   width: 100%;
-  height: calc(100vh - 7rem);
+  margin-top: 84px;
+  height: calc(100vh - 84px);
 }
 
 /* 히어로 영역 */
@@ -37,8 +76,11 @@ body {
   width: 100%;
   aspect-ratio: 16 / 8;
   bottom: 0;
+
   @include m.flex-center;
   z-index: 3;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
 
   @include m.desktop {
     aspect-ratio: 16 / 7;
@@ -78,6 +120,7 @@ body {
   z-index: 2;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
   transition: transform 0.5s ease, box-shadow 0.5s ease;
+
   transform-style: preserve-3d;
   transform-origin: center center;
 
@@ -89,11 +132,15 @@ body {
 }
 
 // 메인 폴더에 마우스 올리거나 클릭했을 시
-.hero.active .profile-txt-box {
-  transform: translateX(-50%) translateY(-60%) rotate(70deg);
+.hero.active .front {
+  transform: translateY(10vh);
+}
+
+.hero.active .profile-txt-box:not(.top) {
+  transform: translateX(-50%) translateY(-40%) rotate(70deg) scale(1);
   box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
   @include m.desktop {
-    transform: translateX(-50%) translateY(-50%) rotate(5deg);
+    transform: translateX(-50%) translateY(-20%) rotate(5deg);
   }
 } //위치 변경되고 각도 변경되고 쉐도우 효과
 .hero.active .profile-txt-box::after {
@@ -121,9 +168,13 @@ body {
 }
 
 // .hero.active 실행된 후 한번 더 클릭 시
-.profile-txt-box.top {
-  transform: translateZ(10px) translateX(-50%) scale(1.5);
+.hero.active .profile-txt-box.top {
+  transform: rotate(90deg) translateX(0%) translateY(85%) scale(2);
   z-index: 10;
+  @include m.desktop {
+    transform: translateZ(10px) translateX(-50%) scale(1.5);
+    z-index: 10;
+  }
 }
 .profile-txt-box.top .card-face.front2 {
   visibility: hidden;
@@ -202,7 +253,6 @@ body {
   left: 50%;
   transform: translateX(-60%);
   padding-top: 1.5rem;
-
   @include m.desktop {
     padding-top: 2rem;
   }
@@ -213,11 +263,19 @@ body {
   visibility: hidden;
 }
 .card-face.back2 {
-  width: 90%;
+  width: 50%;
   height: 100%;
-  margin: 0 auto;
+  margin: 0 1.5rem;
+  transform: rotate(-90deg);
+  @include m.desktop {
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+    transform: rotate(0);
+  }
 }
 .profile-back-box {
+  padding-top: 0;
   @include m.desktop {
     padding-top: 1.5rem;
   }
@@ -229,23 +287,36 @@ body {
   }
 }
 .profile-back {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   @include m.desktop {
     width: 100%;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     color: #242424;
   }
 }
 .profile-me-back {
+  color: #242424;
+  font-size: 1.5rem;
   @include m.desktop {
     font-size: 3rem;
   }
 }
 .profile-back-more {
+  font-size: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: -6.5rem;
+  align-items: end;
   @include m.desktop {
     font-size: 3rem;
     width: 100%;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     margin-top: -2rem;
   }
@@ -261,6 +332,7 @@ body {
 //   background: red;
 // }
 .info-container {
+  margin-top: 3.5rem;
   @include m.desktop {
     margin-top: 8rem;
   }
@@ -277,25 +349,39 @@ body {
     justify-content: space-between;
   }
 }
+
+.informations {
+  margin-bottom: 0.5rem;
+  @include m.desktop {
+    margin-bottom: 0;
+  }
+}
 .info-title {
+  font-size: 0.5rem;
+  padding-left: 0.1rem;
+  color: #f5f5f5;
+  background: #242424;
   @include m.desktop {
     font-size: 0.6rem;
-    padding-left: 0.1rem;
-    color: #f5f5f5;
-    background: #111;
   }
 }
 .info-title.t {
+  margin-bottom: -0.5rem;
   @include m.desktop {
     margin-bottom: -0.2rem;
   }
 }
 .info-d {
+  font-size: 0.5rem;
+  white-space: nowrap;
+  color: #242424;
+
   @include m.desktop {
     font-size: 0.8rem;
   }
 }
 .use-skils {
+  display: none;
   @include m.desktop {
     display: flex;
     flex-direction: column;
@@ -303,7 +389,13 @@ body {
 }
 .use-skils-box {
   display: flex;
+  gap: 0 1rem;
   justify-content: space-between;
+  flex-wrap: wrap;
+  @include m.desktop {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 /* 뒷배경 이미지 */
@@ -319,9 +411,16 @@ body {
   background: var(--color-back);
   border-radius: 0 10px 10px 10px;
   z-index: 1;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+
   @include m.desktop {
     height: 92%;
   }
+}
+
+.hero.active .back::after {
+  transform: translateY(10vh);
 }
 
 .hero .back::before {
@@ -333,9 +432,14 @@ body {
   background: var(--color-back);
   border-radius: 10px 50px 0 0;
   z-index: 1;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
 
   @include m.desktop {
     height: 10%;
     border-radius: 10px 100px 0 0;
   }
+}
+.hero.active .back::before {
+  transform: translateY(10vh);
 }

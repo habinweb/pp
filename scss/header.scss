@@ -20,11 +20,16 @@ dd {
 
 // 헤더
 #header {
-  @include m.layout;
-
+  width: 100%;
+  position: fixed;
+  z-index: 50;
+  background: var(--color-bg-trans);
+  backdrop-filter: blur(20px);
+  padding: 0 2rem;
+  height: 84px;
   .header-box {
     @include m.flex-center;
-    margin: 2rem 0;
+    margin: 1.5rem 0;
     .tag {
       font-size: 1.1rem;
       display: inline-block;
@@ -50,6 +55,7 @@ dd {
     .menu-title {
       position: relative;
       cursor: pointer;
+      white-space: nowrap;
       @include m.effect;
 
       &:hover {
@@ -93,7 +99,9 @@ dd {
     }
   }
 }
-
+.sub-title-d {
+  font-weight: 500;
+}
 .sub-sub {
   margin-top: 1rem;
   font-size: 1rem;
