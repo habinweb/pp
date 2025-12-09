@@ -1,0 +1,131 @@
+@use "mixin" as m;
+@use "fonts";
+
+// 두번째 페이지 전체 레이아웃
+.project-sec {
+  background: var(--color-bg);
+  width: 100%;
+  height: calc(100vh - 6rem);
+}
+// 탭
+.tab-btn {
+  width: 90%;
+  margin: 0 auto;
+}
+.tabs-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  text-align: center;
+  color: var(--color-text);
+}
+.tab {
+  cursor: pointer;
+  height: 50px;
+  line-height: 50px;
+  font-size: 0.8rem;
+  background: var(--color-soft);
+  border-radius: 10px;
+  @include m.desktop {
+    font-size: 1rem;
+  }
+}
+
+.tab:hover {
+  text-decoration: underline;
+}
+.tab.active {
+  background: var(--color-point);
+  font-size: 1rem;
+  font-weight: 700;
+  @include m.desktop {
+    font-size: 1.2rem;
+  }
+}
+// 탭 버튼들과 연결되는 컨텐츠들
+.tab-content-container {
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 1rem;
+}
+
+.tab-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  @include m.desktop {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.content {
+  aspect-ratio: 1 / 0.8;
+  border-radius: 10px;
+  background: var(--color-soft);
+}
+
+// 링크 박스
+.deteil-top {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+.deteils-container {
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+.deteils-txt {
+  color: var(--color-front);
+  text-align: start;
+  padding: 0.5rem 0;
+  font-weight: 600;
+}
+.deteil-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-bg);
+  box-shadow: 1px 1px 20px var(--shadow-soft);
+  border-radius: 10px;
+  padding: 0 1.5rem;
+  height: 74px;
+}
+.deteil-btn {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+.deteil-btn > img {
+  width: 8px;
+  height: 15px;
+  cursor: pointer;
+}
+.deteils {
+  display: flex;
+  width: 90%;
+  overflow-x: scroll;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
+.deteils::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+.deteil {
+  white-space: nowrap;
+  font-weight: 500;
+}
+.deteil > a:hover {
+  color: var(--color-point);
+}
+// 유스스킬
+.deteil.pic {
+  display: flex;
+}
+
+.deteil.pic > img {
+  width: 45px;
+  height: 45px;
+}
